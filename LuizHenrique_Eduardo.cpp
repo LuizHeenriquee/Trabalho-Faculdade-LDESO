@@ -84,6 +84,9 @@ int main () {
 
         switch (option) {
             case '1':
+                cout << "Nothing to show for now" << endl;
+                break;
+            case '2':
                 cout << "Enter the value to be added to the list: ";
                 cin >> value;
 
@@ -95,11 +98,8 @@ int main () {
                 wait();
                 clear_screen();
                 break;
-            case '2':
-                cout << "Nothing to show for now";
-                break;
             case '3':
-                cout << "Nothing to show for now"; 
+                cout << "Nothing to show for now" << endl; 
                 break;
             case '4':
                 if (dl.start == NULL) {
@@ -114,16 +114,24 @@ int main () {
                 }
                 break;
             case '5':
-                cout << "Nothing to show for now";
+                cout << "Nothing to show for now" << endl;
                 break;
             case '6':
-                cout << "Nothing to show for now";
+                cout << "Nothing to show for now" << endl;
                 break;
             case '7':
                 cout << "Thank you for using the program!" << endl;
+                cout << endl;
                 wait();
                 clear_screen();
                 return 0;
+            default:
+                clear_screen();
+                cout << "Invalid answer, please select an option from 1 to 7." << endl;
+                cout << endl;
+                wait();
+                clear_screen();
+                break;
         }
     }
     return 0;
