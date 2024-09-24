@@ -99,7 +99,8 @@ int main () {
                 cout << "Nothing to show for now";
                 break;
             case '3':
-                cout << "Nothing to show for now"; break;
+                cout << "Nothing to show for now"; 
+                break;
             case '4':
                 if (dl.start == NULL) {
                     cout << "Your list is empty!" << endl;
