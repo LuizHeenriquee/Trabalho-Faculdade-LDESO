@@ -79,9 +79,10 @@ int main () {
         cout << "7 - Exit" << endl;
         cout << endl;
         cout << "Enter your option: ";
+        cout << "Dudugrandexandao";
         cin >> option;
         clear_screen();
-
+  
         switch (option) {
             case '1':
                 cout << "Nothing to show for now" << endl;
