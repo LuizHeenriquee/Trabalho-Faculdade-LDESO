@@ -53,12 +53,53 @@ bool include_end(double_list &dl, string value) {
 void show(double_list dl) {
     nodo *it = dl.start;
 
-    cout << endl << endl;
-
     while (it != NULL) {
         cout << "- " << it -> info << endl;
         it = it -> elop;
     }
+    cout << endl;
+}
+
+bool remove_value(double_list &dl, string value) {
+    nodo *it = dl.start;
+
+    while (it != NULL && it -> info != value) {
+        it = it -> elop;
+    }
+
+    if (it == NULL) {
+        return false;
+    }
+
+    if (it -> eloa != NULL) {
+        it -> eloa -> elop = it -> elop;
+    } else {
+        dl.start = it -> elop;
+    }
+
+    if (it -> elop != NULL) {
+        it -> elop -> eloa = it -> eloa;
+    } else {
+        dl.end = it -> eloa;
+    }
+
+    delete it;
+    dl.size--;
+    return true;
+}
+
+void clear_list(double_list &dl) {
+    nodo *it = dl.start;
+
+    while (it != NULL) {
+        cout << "Removing: " << it -> info << endl;
+        nodo *next = it -> elop;
+        delete it;
+        it = next;
+        dl.size--;
+    }
+
+    dl.start = dl.end = NULL;
 }
 
 int main () {
@@ -114,10 +155,40 @@ int main () {
                 }
                 break;
             case '5':
-                cout << "Nothing to show for now" << endl;
+                if (dl.start == NULL) {
+                    cout << "The list is empty, nothing to remove!" << endl;
+                } else {
+                    cout << "Current list:" << endl;
+                    show(dl);
+
+                    bool removed = false;
+                    while (!removed) {
+                        cout << "Enter the value to be removed: ";
+                        cin >> value;
+
+                        if (remove_value(dl, value))
+                        {
+                            cout << "Value removed!" << endl;
+                            removed = true;
+                        }
+                        else
+                        {
+                            cout << "Value not found! Please try again." << endl;
+                        }
+                    }
+                }
+                wait();
+                clear_screen();
                 break;
             case '6':
-                cout << "Nothing to show for now" << endl;
+                if (dl.start == NULL) {
+                    cout << "The lis is already empty!" << endl;
+                } else {
+                    clear_list(dl);
+                    cout << "List emptied!" << endl;
+                }
+                wait();
+                clear_screen();
                 break;
             case '7':
                 cout << "Thank you for using the program!" << endl;
